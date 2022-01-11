@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { QueryClient, QueryClientProvider } from "react-query";
-import Image from 'next/image'
 // import { PostDetail } from "./PostDetail";
 
 const maxPostPage = 10;
-const apikey = process.env.NEXT_PUBLIC_API_KEY
 
 async function fetchPosts() {
   const response = await fetch(
-`https://api.unsplash.com/photos/random/?client_id=${apikey}&count=5`
+    "https://jsonplaceholder.typicode.com/posts?_limit=10&_page=0"
   );
   return response.json();
 }
 
-export function TestNasa() {
+export function Posts() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -31,11 +28,7 @@ export function TestNasa() {
 
   return (
     <>
-    {data.map((item)=> {
-      return (<img key={item.id} src={item.urls.regular} width="300"/>)
-    })}
-    {/* <img src= {data.url} width="300" height="300"/> */}
-      {/* <ul>
+      <ul>
         {data.map((post) => (
           <li
             key={post.id}
@@ -44,7 +37,7 @@ export function TestNasa() {
             {post.title}
           </li>
         ))}
-      </ul> */}
+      </ul>
       <div className="pages" />
     </>
   );

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Image from 'next/image'
 // import { PostDetail } from "./PostDetail";
 
