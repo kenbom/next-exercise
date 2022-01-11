@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
+import Image from 'next/image'
 // import { PostDetail } from "./PostDetail";
 
 const maxPostPage = 10;
+const apikey = process.env.NEXT_PUBLIC_API_KEY
 
 async function fetchPosts() {
   const response = await fetch(
-    // "https://jsonplaceholder.typicode.com/posts?_limit=10&_page=0"
-    "https://api.nasa.gov/planetary/earth/imagery?lon=-95.33&lat=29.78&date=2018-01-01&dim=0.15&api_key=DEMO_KEY"
+`https://api.unsplash.com/photos/random/?client_id=${apikey}&count=5`
   );
   return response.json();
 }
@@ -29,7 +30,10 @@ export function TestNasa() {
 
   return (
     <>
-    <p>{data.date}</p>
+    {data.map((item)=> {
+      return (<img key={item.id} src={item.urls.regular} width="300"/>)
+    })}
+    {/* <img src= {data.url} width="300" height="300"/> */}
       {/* <ul>
         {data.map((post) => (
           <li
