@@ -8,7 +8,7 @@ const apikey = process.env.NEXT_PUBLIC_API_KEY
 
 async function fetchPosts() {
   const response = await fetch(
-`https://api.unsplash.com/photos/random/?client_id=${apikey}&count=5`
+`https://api.unsplash.com/photos/random/?client_id=${apikey}&count=6`
   );
   return response.json();
 }
@@ -29,22 +29,18 @@ export function TestNasa() {
     );
 
   return (
-    <>
+    <div className="photo-container">
     {data.map((item)=> {
-      return (<img key={item.id} src={item.urls.regular} width="300"/>)
+      return (<img key={item.id} src={item.urls.regular} width="70%"/>)
     })}
-    {/* <img src= {data.url} width="300" height="300"/> */}
-      {/* <ul>
-        {data.map((post) => (
-          <li
-            key={post.id}
-            className="post-title"
-            onClick={() => setSelectedPost(post)}>
-            {post.title}
-          </li>
-        ))}
-      </ul> */}
       <div className="pages" />
-    </>
+      <style jsx>{`
+      .photo-container{
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1000px;
+      }
+      `}</style>
+    </div>
   );
 }

@@ -8,7 +8,7 @@ import {TestNasa} from "../components/testNasa"
 const Home: NextPage = () => {
   return (
  <> 
-  <div>Hello, world</div>
+  <div>Hello, world!</div>
   <TestNasa />
 </>
   )
