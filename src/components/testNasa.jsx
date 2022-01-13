@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect ,useMemo} from "react";
 import { useQuery } from "react-query";
 import Image from 'next/image'
 // import { PostDetail } from "./PostDetail";
@@ -16,9 +16,10 @@ async function fetchPosts() {
 export function TestNasa() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedPost, setSelectedPost] = useState(null);
+  const [newData, setNewData]= useState([])
 
   // replace with useQuery
-  const { data, isLoading, error, isError } = useQuery("posts", fetchPosts);
+  const { data, isLoading, error, isError } = useQuery("posts", fetchPosts,{ refetchOnWindowFocus: false });
   if (isLoading) return <h3>Loading...</h3>;
   if (isError)
     return (
@@ -27,18 +28,18 @@ export function TestNasa() {
         <p>{error.toString()}</p>
       </>
     );
-
+//  useMemo(()=>{setNewData(data)},[])
   return (
     <div className="photo-container">
     {data.map((item)=> {
-      return (<img key={item.id} src={item.urls.regular} width="70%"/>)
+      return (<img key={item.id} src={item.urls.regular} width="100%"/>)
     })}
       <div className="pages" />
       <style jsx>{`
       .photo-container{
           margin-left: auto;
           margin-right: auto;
-          max-width: 1000px;
+          max-width: 90%;
       }
       `}</style>
     </div>
